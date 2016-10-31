@@ -1,0 +1,67 @@
+<div class="nai-navbar">
+	<div class="title">
+		<i class="glyphicon glyphicon-plane"></i>
+		محصولات
+	</div>
+	<button class="nai-nav-icon left glyphicon glyphicon-chevron-left" ng-click="go('/main')"></button>
+	<button class="nai-nav-icon left glyphicon glyphicon-plus" ng-click="go('/sales/new')"></button>
+</div>
+
+<div class="col-xs-12 nai-page-container">
+	<div class="form-group col-sm-4">
+		<label class="control-label">ترتیب نمایش</label>
+		<select class="form-control" selectize="{}" options="sortBys" ng-model="filters.sortBy"></select>
+	</div>
+	<div class="form-group col-sm-4">
+		<label class="control-label">متن جست‌وجو</label>
+		<input class="form-control" ng-model="filters.text">
+	</div>
+</div>
+
+
+<ul class="list-group">
+	<li class="list-group-item col-xs-12 sale slide-down" ng-repeat="item in items" ng-class="{'delivered': item.delivered, 'payed': item.payed}" ngz-click="go('/sales/{{item.id}}')">
+		<div class="col-sm-4">
+			<div class="row">
+				<div class="col-xs-6">
+					<label class="text-danger">نام محصول</label>
+				</div>
+				<div class="col-xs-6">
+					{{ item.name }}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6">
+					<label class="text-primary">قیمت</label>
+				</div>
+				<div class="col-xs-6">
+					{{ displayPrice( item.price ) }} <i>ریال</i>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6">
+					<label class="text-primary">مجموع فروش</label>
+				</div>
+				<div class="col-xs-6">
+					{{ item.totalSales }}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6">
+					<label class="text-primary">مجموع فروش ۳۰ روز گذشته</label>
+				</div>
+				<div class="col-xs-6">
+					{{ item.lastSales }}
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-8">
+			<div class="row">
+				<label class="col-xs-12 text-primary">نمودار فروش ۳۰ روز گذشته</label>
+			</div>
+			<div class="row">
+				<highchart class="col-xs-12" config="highchartConfig"></highchart>
+			</div>
+		</div>
+	</li>
+</ul>

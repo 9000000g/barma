@@ -1,0 +1,9 @@
+{
+  "name": "barma",
+  "title": "Barma",
+  "description": "Powerfull app for your coffeeshop!",
+  "version": "1.0.0",
+  "license": "ISC",
+  "author": "Dixano",
+  "main": "main.js"
+}

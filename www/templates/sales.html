@@ -1,0 +1,77 @@
+<div class="nai-navbar">
+	<div class="title">
+		<i class="glyphicon glyphicon-plane"></i>
+		فروش
+	</div>
+	<button class="nai-nav-icon left glyphicon glyphicon-chevron-left" ng-click="go('/main')"></button>
+	<button class="nai-nav-icon left glyphicon glyphicon-plus" ng-click="go('/sales/new')"></button>
+</div>
+
+<div class="col-xs-12 nai-page-container">
+	<div class="form-group col-sm-4">
+		<label class="control-label">ترتیب نمایش</label>
+		<select class="form-control" selectize="{}" options="sortBys" ng-model="filters.sortBy"></select>
+	</div>
+	<div class="form-group col-sm-4">
+		<label class="control-label">تاریخ</label>
+		<input class="form-control" ng-jalaali-flat-datepicker datepicker-config="datepickerConfig" ng-model="filters.date">
+	</div>
+	<div class="form-group col-sm-4">
+		<label class="control-label">متن جست‌وجو</label>
+		<input class="form-control" ng-model="filters.text">
+	</div>
+</div>
+
+<ul class="list-group">
+	<li class="list-group-item col-xs-12 sale slide-down" ng-repeat="item in items" ng-class="{'delivered': item.delivered, 'payed': item.payed}" ngz-click="go('/sales/{{item.id}}')">
+		<div class="col-sm-5">
+			<div class="row">
+				<div class="col-xs-3">
+					<label class="text-danger">مشتری</label>
+				</div>
+				<div class="col-xs-9">
+					{{ item.customer_name }}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-3">
+					<label class="text-primary">هزینه</label>
+				</div>
+				<div class="col-xs-9">
+					{{ displayPrice( item.totalPrice) }} <i>ریال</i>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-3">
+					<label class="text-primary">تاریخ</label>
+				</div>
+				<div class="col-xs-9">
+					{{ item.date }}
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-5">
+			<div class="full-width">
+				<label class="text-primary">محصولات</label>
+			</div>
+			<div class="full-width" ng-repeat="prd in item.products">
+				<span class="pull-right"> {{ prd.name }} </span>: <span class="text-warning"> {{ prd.cnt }} {{ prd.cnt > 1 ? 'تا': 'عدد'}} </span> 
+			</div>
+		</div>
+		<div class="col-xs-2">
+			<div class="row">
+				<label>
+					<input class="pull-right" type="checkbox" ng-model="item.delivered"><span class="col-xs-offset-1"></span>
+					 تحویل
+				</label>
+			</div>
+			<div class="row">
+				<label>
+					<input class="pull-right" type="checkbox" ng-model="item.payed"><span class="col-xs-offset-1"></span>
+					 پرداخت
+				</label>
+				
+			</div>
+		</div>
+	</li>
+</ul>

@@ -1,0 +1,18 @@
+<div class="nai-navbar">
+	<div class="title">
+		<i class="glyphicon glyphicon-plane"></i>
+		انتخاب فایل
+	</div>
+	<button class="nai-nav-icon left glyphicon glyphicon-off" ng-click="exit()"></button>
+	<button class="nai-nav-icon left glyphicon glyphicon-folder-open" ng-click="selectFile()"></button>
+	<button class="nai-nav-icon left glyphicon glyphicon-plus" ng-click="newFile()"></button>
+</div>
+<label class="col-xs-12 list-group-item text-info" ng-show="recentFiles.length > 0"> فایل‌هایی که در اجراهای قبلی برنامه از آنها استفاده کرده‌اید: </label>	
+<ul class="list-group" style="direction: ltr">
+	<li class="list-group-item col-xs-12 text-left slide-down" ng-repeat="item in recentFiles" ng-click="selectFile(item)">
+		<i class="icon glyphicon glyphicon-time"></i> <span> {{item}} </span> <i class="icon text-danger glyphicon glyphicon-remove pull-right" ng-click="clearFileFromRecent($index)"></i> 
+	</li>
+</ul>
+
+
+
